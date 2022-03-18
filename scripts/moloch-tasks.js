@@ -4,14 +4,14 @@ const deploymentParams = require('../deployment-params')
 const {
   getDeployedMoloch,
   getFirstAccount,
-  getApprovedToken,
+  getApprovedTokens,
   hasEnoughTokens,
   hasEnoughAllowance,
   giveAllowance
 } = require('./utils')
 
 task('moloch-deploy', 'Deploys a new instance of the Moloch DAO')
-  .setAction(async () => {
+  .setAction(async (taskArgs, hre) => {
     if (deploymentParams.SUMMONER === '' || deploymentParams.TOKEN === '') {
       console.error('Please set the deployment parameters in deployment-params.js')
       return
@@ -20,11 +20,11 @@ task('moloch-deploy', 'Deploys a new instance of the Moloch DAO')
     // Make sure everything is compiled
     await run('compile')
 
-    console.log('Deploying a new DAO to the network ' + buidlerArguments.network)
+    console.log('Deploying a new DAO to the network ' + hre.network.name)
     console.log(
       'Deployment parameters:\n',
       '  summoner:', deploymentParams.SUMMONER, '\n',
-      '  token:', deploymentParams.TOKEN, '\n',
+      '  tokens:', deploymentParams.TOKEN, '\n',
       '  periodSeconds:', deploymentParams.PERIOD_DURATION_IN_SECONDS, '\n',
       '  votingPeriods:', deploymentParams.VOTING_DURATON_IN_PERIODS, '\n',
       '  gracePeriods:', deploymentParams.GRACE_DURATON_IN_PERIODS, '\n',
@@ -47,11 +47,10 @@ task('moloch-deploy', 'Deploys a new instance of the Moloch DAO')
     console.log("Deploying...")
     const moloch = await Moloch.new(
       deploymentParams.SUMMONER,
-      deploymentParams.TOKEN,
+      [deploymentParams.TOKEN],
       deploymentParams.PERIOD_DURATION_IN_SECONDS,
       deploymentParams.VOTING_DURATON_IN_PERIODS,
       deploymentParams.GRACE_DURATON_IN_PERIODS,
-      deploymentParams.ABORT_WINDOW_IN_PERIODS,
       deploymentParams.PROPOSAL_DEPOSIT,
       deploymentParams.DILUTION_BOUND,
       deploymentParams.PROCESSING_REWARD
@@ -76,7 +75,7 @@ task('moloch-submit-proposal', 'Submits a proposal')
       return
     }
 
-    const token = await getApprovedToken()
+    const token = await getApprovedTokens()
     if (token === undefined) {
       return
     }

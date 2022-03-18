@@ -37,14 +37,14 @@ async function getDeployedPool () {
  * Returns the deployed instance of the Moloch DAO's approved token, or
  * undefined if the DAO's address hasn't been set in the config.
  */
-async function getApprovedToken () {
+async function getApprovedTokens () {
   const moloch = await getDeployedMoloch()
   if (moloch === undefined) {
     return
   }
 
   const IERC20 = artifacts.require('IERC20')
-  const tokenAddress = await moloch.approvedToken()
+  const tokenAddress = await moloch.approvedTokens()
 
   return IERC20.at(tokenAddress)
 }
@@ -93,7 +93,7 @@ async function hasEnoughPoolShares (pool, owner, amount) {
 module.exports = {
   getDeployedMoloch,
   getDeployedPool,
-  getApprovedToken,
+  getApprovedTokens,
   getMolochAddress,
   getPoolAddress,
   giveAllowance,
