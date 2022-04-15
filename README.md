@@ -10,7 +10,7 @@ STEAL THIS CODE
 
 ~ Allen Ginsberg, Howl
 
-Moloch v2 is an upgraded version of MolochDAO that allows the DAO to acquire and spend multiple different tokens, instead of just one. It introduces the Guild Kick proposal type which allows members to forcibly remove another member (their assets are refunded in full). It also also allows for issuing non-voting shares in the form of Loot. Finally, v2 fixes the "unsafe approval" issue raised in the original [Nomic Labs audit](https://medium.com/nomic-labs-blog/moloch-dao-audit-report-f31505e85c70).
+Moloch v2 is an upgraded version of MolochDAO that allows the DAO to acquire and spend multiple different tokens, instead of just one. It introduces the Guild Kick proposal type which allows members to forcibly remove another member (their assets are refunded in full). It also allows for issuing non-voting shares in the form of Loot. Finally, v2 fixes the "unsafe approval" issue raised in the original [Nomic Labs audit](https://medium.com/nomic-labs-blog/moloch-dao-audit-report-f31505e85c70).
 
 For a primer on Moloch v1, please visit the [original documentation](https://github.com/MolochVentures/moloch/tree/minimal-revenue/v1_contracts).
 
