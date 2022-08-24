@@ -20,9 +20,9 @@ module.exports = {
         pool: ""
       }
     },
-    'godwoken-testnet': {
-      url: `https://godwoken-testnet-v1.ckbapp.dev`,
-      accounts: ['0xd9066ff9f753a1898709b568119055660a77d9aae4d7a4ad677b8fb3d2a571e5'],
+    'godwoken-mainnet': {
+      url: `https://v1.mainnet.godwoken.io/rpc`,
+      accounts: [process.env.PRIVATE_KEY],
       deployedContracts: {
         moloch: "",
         pool: ""
